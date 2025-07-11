@@ -3,7 +3,13 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   server: {
     port: 5173,
-    host: true
+    host: true,
+    // Fallback para SPA: cualquier ruta devuelve index.html
+    fs: {
+      allow: ['.']
+    },
+    middlewareMode: false,
+    historyApiFallback: true
   },
   build: {
     outDir: 'dist',

@@ -19,6 +19,7 @@ body {
   display: none !important;
 }
 
+/* Forzar visibilidad SPA */
 .view {
   display: none;
   min-height: 100vh;

@@ -6,7 +6,7 @@ let currentUser = null;
 let editingPet = null;
 let editingStay = null;
 
-console.log('PetCare Center SPA - JavaScript cargado correctamente');
+console.log('PetCare Center SPA - JavaScript loaded correctly');
 
 // DOM Elements
 const views = {
@@ -17,10 +17,10 @@ const views = {
   notFound: document.getElementById('not-found')
 };
 
-// Verificar que todos los elementos existan
-console.log('Verificando elementos del DOM:');
+// Check that all elements exist
+console.log('Checking DOM elements:');
 Object.entries(views).forEach(([name, element]) => {
-  console.log(`${name}:`, element ? '✅ Encontrado' : '❌ No encontrado');
+  console.log(`${name}:`, element ? ' Found' : ' Not found');
 });
 
 // Initialize the application
@@ -33,24 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Initialize the application
 function initializeApp() {
-  console.log('Inicializando aplicación...');
-  
+  console.log('Initializing application...');
   // Check if user is already logged in
   const savedUser = localStorage.getItem('currentUser');
   if (savedUser) {
     currentUser = JSON.parse(savedUser);
-    console.log('Usuario encontrado en localStorage:', currentUser);
+    console.log('User found in localStorage:', currentUser);
   } else {
-    console.log('No hay usuario en localStorage');
+    console.log('No user in localStorage');
   }
-  
   // The routing system will handle which view to show
 }
 
 // Setup all event listeners
 function setupEventListeners() {
-  console.log('Configurando event listeners...');
-  
+  console.log('Setting up event listeners...');
   // Landing page navigation
   document.getElementById('go-to-login').addEventListener('click', () => showLogin());
   document.getElementById('go-to-register').addEventListener('click', () => showRegister());
@@ -59,7 +56,7 @@ function setupEventListeners() {
 
   // Login form
   const loginForm = document.getElementById('login-form');
-  console.log('Formulario de login encontrado:', loginForm);
+  console.log('Login form found:', loginForm);
   loginForm.addEventListener('submit', handleLogin);
   document.getElementById('login-go-register').addEventListener('click', (e) => {
     e.preventDefault();
@@ -115,21 +112,18 @@ function setupEventListeners() {
 
 // Setup routing
 function setupRouting() {
-  console.log('Configurando sistema de rutas...');
-  
+  console.log('Setting up routing system...');
   // Handle browser back/forward buttons
   window.addEventListener('popstate', (e) => {
-    console.log('Navegación detectada:', window.location.pathname);
+    console.log('Navigation detected:', window.location.pathname);
     handleRoute(window.location.pathname);
   });
-  
   // Handle initial route
   handleRoute(window.location.pathname);
 }
 
 function handleRoute(pathname) {
-  console.log('Manejando ruta:', pathname);
-  
+  console.log('Handling route:', pathname);
   // Handle root path
   if (pathname === '/' || pathname === '') {
     if (currentUser) {
@@ -139,7 +133,6 @@ function handleRoute(pathname) {
     }
     return;
   }
-  
   switch (pathname) {
     case '/landing':
       showLanding();
@@ -165,20 +158,12 @@ function handleRoute(pathname) {
 
 // Navigation functions
 function showView(viewId) {
-  console.log('Cambiando a vista:', viewId);
-  
+  // Hide all views
   Object.values(views).forEach(view => {
     view.classList.remove('active');
   });
+  // Show only the selected view
   views[viewId].classList.add('active');
-  
-  console.log('Vista activada:', viewId);
-  
-  // Verificar que la vista esté visible
-  const activeView = views[viewId];
-  console.log('Vista activa:', activeView);
-  console.log('Clases de la vista activa:', activeView.className);
-  console.log('¿Está visible?', window.getComputedStyle(activeView).display !== 'none');
 }
 
 function showLanding() {
@@ -199,9 +184,9 @@ function showRegister() {
 }
 
 function showDashboard() {
-  console.log('Mostrando dashboard...');
+  console.log('Showing dashboard...');
   showView('dashboard');
-  console.log('Dashboard view activada, cargando datos...');
+  console.log('Dashboard view activated, loading data...');
   loadDashboard();
   updateURL('/dashboard');
 }
@@ -218,20 +203,20 @@ async function handleLogin(e) {
   const username = document.getElementById('login-username').value.trim();
   const password = document.getElementById('login-password').value;
 
-  console.log('Intentando login con:', { username, password });
+  console.log('Attempting login with:', { username, password });
 
   try {
     // Get all users and search by email or identity
     const response = await fetch(`${API_BASE_URL}/users`);
     const users = await response.json();
     
-    console.log('Usuarios encontrados:', users.length);
+    console.log('Users found:', users.length);
     
     const user = users.find(u => 
       (u.email === username || u.identidad === username) && u.contrasena === password
     );
 
-    console.log('Usuario encontrado:', user);
+    console.log('User found:', user);
 
     if (user) {
       // Get user role
@@ -241,15 +226,15 @@ async function handleLogin(e) {
       currentUser = { ...user, role: role.name };
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
       
-      console.log('Login exitoso:', currentUser);
+      console.log('Login successful:', currentUser);
       showDashboard();
     } else {
-      console.log('Credenciales incorrectas');
-      alert('Credenciales incorrectas');
+      console.log('Incorrect credentials');
+      alert('Incorrect credentials');
     }
   } catch (error) {
     console.error('Error during login:', error);
-    alert('Error al iniciar sesión');
+    alert('Error logging in');
   }
 }
 
@@ -276,14 +261,14 @@ async function handleRegister(e) {
     });
 
     if (response.ok) {
-      alert('Usuario registrado exitosamente. Ahora puedes iniciar sesión.');
+      alert('User registered successfully. You can now log in.');
       showLogin();
     } else {
-      alert('Error al registrar usuario');
+      alert('Error registering user');
     }
   } catch (error) {
     console.error('Error during registration:', error);
-    alert('Error al registrar usuario');
+    alert('Error registering user');
   }
 }
 
@@ -303,24 +288,24 @@ function checkAuthStatus() {
 
 // Dashboard functions
 async function loadDashboard() {
-  console.log('Cargando dashboard para usuario:', currentUser);
+  console.log('Loading dashboard for user:', currentUser);
   
   if (!currentUser) {
-    console.log('No hay usuario actual, retornando');
+    console.log('No current user, returning');
     return;
   }
 
-  console.log('Configurando título del dashboard...');
-  document.getElementById('dashboard-title').textContent = `Bienvenido, ${currentUser.nombre}`;
+  console.log('Setting dashboard title...');
+  document.getElementById('dashboard-title').textContent = `Welcome, ${currentUser.nombre}`;
 
   if (currentUser.role === 'customer') {
-    console.log('Mostrando dashboard de cliente');
+    console.log('Showing customer dashboard');
     showCustomerDashboard();
   } else if (currentUser.role === 'worker') {
-    console.log('Mostrando dashboard de trabajador');
+    console.log('Showing worker dashboard');
     showWorkerDashboard();
   } else {
-    console.log('Rol no reconocido:', currentUser.role);
+    console.log('Unknown role:', currentUser.role);
   }
 }
 
@@ -334,27 +319,27 @@ function showCustomerDashboard() {
 }
 
 function showWorkerDashboard() {
-  console.log('Configurando dashboard de trabajador...');
+  console.log('Configuring worker dashboard...');
   
   document.getElementById('customer-dashboard').classList.add('hidden');
   document.getElementById('worker-dashboard').classList.remove('hidden');
   document.getElementById('add-pet-btn').classList.add('hidden');
   document.getElementById('add-stay-btn').classList.remove('hidden');
   
-  console.log('Cargando datos del trabajador...');
+  console.log('Loading worker data...');
   loadAllPets();
   loadAllUsers();
   loadAllStays();
   
-  // Verificar que el dashboard esté visible
+  // Verify dashboard is visible
   setTimeout(() => {
     const dashboard = document.getElementById('dashboard');
     const workerDashboard = document.getElementById('worker-dashboard');
-    console.log('Dashboard principal:', dashboard);
-    console.log('Dashboard trabajador:', workerDashboard);
-    console.log('Dashboard principal visible:', window.getComputedStyle(dashboard).display !== 'none');
-    console.log('Dashboard trabajador visible:', window.getComputedStyle(workerDashboard).display !== 'none');
-    console.log('Dashboard trabajador hidden:', workerDashboard.classList.contains('hidden'));
+    console.log('Main dashboard:', dashboard);
+    console.log('Worker dashboard:', workerDashboard);
+    console.log('Main dashboard visible:', window.getComputedStyle(dashboard).display !== 'none');
+    console.log('Worker dashboard visible:', window.getComputedStyle(workerDashboard).display !== 'none');
+    console.log('Worker dashboard hidden:', workerDashboard.classList.contains('hidden'));
   }, 1000);
 }
 
@@ -399,7 +384,7 @@ function displayPets(pets, containerId) {
   container.innerHTML = '';
 
   if (pets.length === 0) {
-    container.innerHTML = '<p>No hay mascotas registradas</p>';
+    container.innerHTML = '<p>No pets registered</p>';
     return;
   }
 
@@ -408,20 +393,20 @@ function displayPets(pets, containerId) {
     petCard.className = 'pet-card';
     petCard.innerHTML = `
       <h3>${pet.nombre}</h3>
-      <p><strong>Peso:</strong> ${pet.peso} kg</p>
-      <p><strong>Edad:</strong> ${pet.edad} años</p>
-      <p><strong>Raza:</strong> ${pet.raza}</p>
-      <p><strong>Temperamento:</strong> ${pet.temperamento}</p>
-      ${pet.anotaciones ? `<p><strong>Anotaciones:</strong> ${pet.anotaciones}</p>` : ''}
+      <p><strong>Weight:</strong> ${pet.peso} kg</p>
+      <p><strong>Age:</strong> ${pet.edad} years</p>
+      <p><strong>Breed:</strong> ${pet.raza}</p>
+      <p><strong>Temperament:</strong> ${pet.temperamento}</p>
+      ${pet.anotaciones ? `<p><strong>Notes:</strong> ${pet.anotaciones}</p>` : ''}
       <div class="card-actions">
-        <button class="edit-btn" data-pet-id="${pet.id}">Editar</button>
-        <button class="delete-btn" data-pet-id="${pet.id}">Eliminar</button>
+        <button class="edit-btn" data-pet-id="${pet.id}">Edit</button>
+        <button class="delete-btn" data-pet-id="${pet.id}">Delete</button>
       </div>
     `;
     container.appendChild(petCard);
   });
 
-  // Agregar event listeners a los botones
+  // Add event listeners to buttons
   container.querySelectorAll('.edit-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const petId = parseInt(e.target.dataset.petId);
@@ -444,15 +429,15 @@ function showPetModal(pet = null) {
   const form = document.getElementById('pet-form');
 
   if (pet) {
-    title.textContent = 'Editar Mascota';
-    form.nombre.value = pet.nombre;
-    form.peso.value = pet.peso;
-    form.edad.value = pet.edad;
-    form.raza.value = pet.raza;
-    form.temperamento.value = pet.temperamento;
-    form.anotaciones.value = pet.anotaciones || '';
+    title.textContent = 'Edit Pet';
+    form['pet-nombre'].value = pet.nombre;
+    form['pet-peso'].value = pet.peso;
+    form['pet-edad'].value = pet.edad;
+    form['pet-raza'].value = pet.raza;
+    form['pet-temperamento'].value = pet.temperamento;
+    form['pet-anotaciones'].value = pet.anotaciones || '';
   } else {
-    title.textContent = 'Agregar Mascota';
+    title.textContent = 'Add Pet';
     form.reset();
   }
 
@@ -477,7 +462,7 @@ async function handlePetSubmit(e) {
     userId: currentUser.id
   };
 
-  console.log('Guardando mascota:', petData);
+  console.log('Saving pet:', petData);
 
   try {
     const url = editingPet 
@@ -496,8 +481,8 @@ async function handlePetSubmit(e) {
 
     if (response.ok) {
       const result = await response.json();
-      console.log('Mascota guardada exitosamente:', result);
-      alert(editingPet ? 'Mascota actualizada exitosamente' : 'Mascota creada exitosamente');
+      console.log('Pet saved successfully:', result);
+      alert(editingPet ? 'Pet updated successfully' : 'Pet created successfully');
       hidePetModal();
       loadDashboard();
     } else {
@@ -505,30 +490,30 @@ async function handlePetSubmit(e) {
     }
   } catch (error) {
     console.error('Error saving pet:', error);
-    alert('Error al guardar mascota: ' + error.message);
+    alert('Error saving pet: ' + error.message);
   }
 }
 
 async function editPet(petId) {
-  console.log('Editando mascota con ID:', petId);
+  console.log('Editing pet with ID:', petId);
   try {
     const response = await fetch(`${API_BASE_URL}/pets/${petId}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const pet = await response.json();
-    console.log('Mascota cargada para editar:', pet);
+    console.log('Pet loaded for editing:', pet);
     showPetModal(pet);
   } catch (error) {
     console.error('Error loading pet:', error);
-    alert('Error al cargar mascota: ' + error.message);
+    alert('Error loading pet: ' + error.message);
   }
 }
 
 async function deletePet(petId) {
-  console.log('Eliminando mascota con ID:', petId);
+  console.log('Deleting pet with ID:', petId);
   
-  if (!confirm('¿Estás seguro de que quieres eliminar esta mascota?')) return;
+  if (!confirm('Are you sure you want to delete this pet?')) return;
 
   try {
     // Check if pet has stays
@@ -539,7 +524,7 @@ async function deletePet(petId) {
     const stays = await staysResponse.json();
     
     if (stays.length > 0) {
-      alert('No se puede eliminar una mascota que tiene estancias registradas');
+      alert('Cannot delete a pet that has registered stays');
       return;
     }
 
@@ -548,15 +533,15 @@ async function deletePet(petId) {
     });
 
     if (response.ok) {
-      console.log('Mascota eliminada exitosamente');
-      alert('Mascota eliminada exitosamente');
+      console.log('Pet deleted successfully');
+      alert('Pet deleted successfully');
       loadDashboard();
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
     console.error('Error deleting pet:', error);
-    alert('Error al eliminar mascota: ' + error.message);
+    alert('Error deleting pet: ' + error.message);
   }
 }
 
@@ -576,7 +561,7 @@ function displayUsers(users) {
   container.innerHTML = '';
 
   if (users.length === 0) {
-    container.innerHTML = '<p>No hay usuarios registrados</p>';
+    container.innerHTML = '<p>No users registered</p>';
     return;
   }
 
@@ -585,12 +570,12 @@ function displayUsers(users) {
     userCard.className = 'user-card';
     userCard.innerHTML = `
       <h3>${user.nombre}</h3>
-      <p><strong>Identidad:</strong> ${user.identidad}</p>
-      <p><strong>Teléfono:</strong> ${user.telefono}</p>
+      <p><strong>Identity:</strong> ${user.identidad}</p>
+      <p><strong>Phone:</strong> ${user.telefono}</p>
       <p><strong>Email:</strong> ${user.email}</p>
-      <p><strong>Dirección:</strong> ${user.direccion}</p>
+      <p><strong>Address:</strong> ${user.direccion}</p>
       <span class="role-badge role-${user.rolId === 1 ? 'worker' : 'customer'}">
-        ${user.rolId === 1 ? 'Trabajador' : 'Cliente'}
+        ${user.rolId === 1 ? 'Worker' : 'Customer'}
       </span>
     `;
     container.appendChild(userCard);
@@ -613,7 +598,7 @@ function displayStays(stays) {
   container.innerHTML = '';
 
   if (stays.length === 0) {
-    container.innerHTML = '<p>No hay estancias registradas</p>';
+    container.innerHTML = '<p>No stays registered</p>';
     return;
   }
 
@@ -622,25 +607,25 @@ function displayStays(stays) {
     const stayCard = document.createElement('div');
     stayCard.className = 'stay-card';
     stayCard.innerHTML = `
-      <h3>Estancia #${stay.id}</h3>
-      <p><strong>Ingreso:</strong> ${formatDate(stay.ingreso)}</p>
-      <p><strong>Salida:</strong> ${formatDate(stay.salida)}</p>
-      <p><strong>Valor por día:</strong> $${stay.valorDia.toLocaleString()}</p>
-      <p><strong>Servicios:</strong> ${stay.serviciosAdicionales.join(', ')}</p>
-      <div class="total-value">Valor total: $${totalValue.toLocaleString()}</div>
+      <h3>Stay #${stay.id}</h3>
+      <p><strong>Check-in:</strong> ${formatDate(stay.ingreso)}</p>
+      <p><strong>Check-out:</strong> ${formatDate(stay.salida)}</p>
+      <p><strong>Value per day:</strong> $${stay.valorDia.toLocaleString()}</p>
+      <p><strong>Services:</strong> ${stay.serviciosAdicionales.join(', ')}</p>
+      <div class="total-value">Total value: $${totalValue.toLocaleString()}</div>
       <span class="status-badge status-${stay.completada ? 'completed' : 'active'}">
-        ${stay.completada ? 'Completada' : 'Activa'}
+        ${stay.completada ? 'Completed' : 'Active'}
       </span>
       <div class="card-actions">
-        ${!stay.completada ? `<button class="complete-btn" data-stay-id="${stay.id}">Completar</button>` : ''}
-        <button class="edit-btn" data-stay-id="${stay.id}">Editar</button>
-        <button class="delete-btn" data-stay-id="${stay.id}">Eliminar</button>
+        ${!stay.completada ? `<button class="complete-btn" data-stay-id="${stay.id}">Complete</button>` : ''}
+        <button class="edit-btn" data-stay-id="${stay.id}">Edit</button>
+        <button class="delete-btn" data-stay-id="${stay.id}">Delete</button>
       </div>
     `;
     container.appendChild(stayCard);
   });
 
-  // Agregar event listeners a los botones
+  // Add event listeners to buttons
   container.querySelectorAll('.complete-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const stayId = parseInt(e.target.dataset.stayId);
@@ -670,7 +655,7 @@ function showStayModal(stay = null) {
   const form = document.getElementById('stay-form');
 
   if (stay) {
-    title.textContent = 'Editar Estancia';
+    title.textContent = 'Edit Stay';
     form.pet.value = stay.petId;
     form.ingreso.value = stay.ingreso;
     form.salida.value = stay.salida;
@@ -681,7 +666,7 @@ function showStayModal(stay = null) {
       checkbox.checked = stay.serviciosAdicionales.includes(checkbox.value);
     });
   } else {
-    title.textContent = 'Crear Estancia';
+    title.textContent = 'Create Stay';
     form.reset();
     loadPetsForStay();
   }
@@ -700,7 +685,7 @@ async function loadPetsForStay() {
     const pets = await response.json();
     const select = document.getElementById('stay-pet');
     
-    select.innerHTML = '<option value="">Seleccionar mascota</option>';
+    select.innerHTML = '<option value="">Select a pet</option>';
     pets.forEach(pet => {
       const option = document.createElement('option');
       option.value = pet.id;
@@ -727,7 +712,7 @@ async function handleStaySubmit(e) {
     completada: false
   };
 
-  console.log('Guardando estancia:', stayData);
+  console.log('Saving stay:', stayData);
 
   try {
     const url = editingStay 
@@ -746,8 +731,8 @@ async function handleStaySubmit(e) {
 
     if (response.ok) {
       const result = await response.json();
-      console.log('Estancia guardada exitosamente:', result);
-      alert(editingStay ? 'Estancia actualizada exitosamente' : 'Estancia creada exitosamente');
+      console.log('Stay saved successfully:', result);
+      alert(editingStay ? 'Stay updated successfully' : 'Stay created successfully');
       hideStayModal();
       loadDashboard();
     } else {
@@ -755,31 +740,31 @@ async function handleStaySubmit(e) {
     }
   } catch (error) {
     console.error('Error saving stay:', error);
-    alert('Error al guardar estancia: ' + error.message);
+    alert('Error saving stay: ' + error.message);
   }
 }
 
 async function editStay(stayId) {
-  console.log('Editando estancia con ID:', stayId);
+  console.log('Editing stay with ID:', stayId);
   try {
     const response = await fetch(`${API_BASE_URL}/stays/${stayId}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const stay = await response.json();
-    console.log('Estancia cargada para editar:', stay);
+    console.log('Stay loaded for editing:', stay);
     await loadPetsForStay();
     showStayModal(stay);
   } catch (error) {
     console.error('Error loading stay:', error);
-    alert('Error al cargar estancia: ' + error.message);
+    alert('Error loading stay: ' + error.message);
   }
 }
 
 async function completeStay(stayId) {
-  console.log('Completando estancia con ID:', stayId);
+  console.log('Completing stay with ID:', stayId);
   
-  if (!confirm('¿Estás seguro de que quieres marcar esta estancia como completada?')) return;
+  if (!confirm('Are you sure you want to mark this stay as completed?')) return;
 
   try {
     const response = await fetch(`${API_BASE_URL}/stays/${stayId}`, {
@@ -791,22 +776,22 @@ async function completeStay(stayId) {
     });
 
     if (response.ok) {
-      console.log('Estancia marcada como completada');
-      alert('Estancia marcada como completada exitosamente');
+      console.log('Stay marked as completed');
+      alert('Stay marked as completed successfully');
       loadDashboard();
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
     console.error('Error completing stay:', error);
-    alert('Error al completar estancia: ' + error.message);
+    alert('Error completing stay: ' + error.message);
   }
 }
 
 async function deleteStay(stayId) {
-  console.log('Eliminando estancia con ID:', stayId);
+  console.log('Deleting stay with ID:', stayId);
   
-  if (!confirm('¿Estás seguro de que quieres eliminar esta estancia?')) return;
+  if (!confirm('Are you sure you want to delete this stay?')) return;
 
   try {
     const response = await fetch(`${API_BASE_URL}/stays/${stayId}`, {
@@ -814,15 +799,15 @@ async function deleteStay(stayId) {
     });
 
     if (response.ok) {
-      console.log('Estancia eliminada exitosamente');
-      alert('Estancia eliminada exitosamente');
+      console.log('Stay deleted successfully');
+      alert('Stay deleted successfully');
       loadDashboard();
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
     console.error('Error deleting stay:', error);
-    alert('Error al eliminar estancia: ' + error.message);
+    alert('Error deleting stay: ' + error.message);
   }
 }
 
@@ -835,11 +820,11 @@ function calculateStayTotal(stay) {
 }
 
 function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString('es-ES');
+  return new Date(dateString).toLocaleDateString('en-US');
 }
 
 // Update URL without page reload
 function updateURL(path) {
-  console.log('Actualizando URL a:', path);
+  console.log('Updating URL to:', path);
   window.history.pushState({}, '', path);
 }
