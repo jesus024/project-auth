@@ -1,0 +1,102 @@
+{
+  "roles": [
+    {
+      "id": 1,
+      "name": "worker"
+    },
+    {
+      "id": 2,
+      "name": "customer"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "nombre": "Ana García",
+      "identidad": "12345678",
+      "telefono": "3001234567",
+      "direccion": "Calle 123 #45-67, Bogotá",
+      "email": "ana@mail.com",
+      "contrasena": "123456",
+      "rolId": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Carlos López",
+      "identidad": "87654321",
+      "telefono": "3109876543",
+      "direccion": "Carrera 78 #12-34, Medellín",
+      "email": "carlos@mail.com",
+      "contrasena": "123456",
+      "rolId": 2
+    },
+    {
+      "id": 3,
+      "nombre": "María Rodríguez",
+      "identidad": "11223344",
+      "telefono": "3155555555",
+      "direccion": "Avenida 5 #23-45, Cali",
+      "email": "maria@mail.com",
+      "contrasena": "123456",
+      "rolId": 2
+    }
+  ],
+  "pets": [
+    {
+      "id": 1,
+      "nombre": "Luna",
+      "peso": 15.5,
+      "edad": 3,
+      "raza": "Golden Retriever",
+      "anotaciones": "Muy juguetona y sociable",
+      "temperamento": "Amigable",
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "nombre": "Max",
+      "peso": 8.2,
+      "edad": 2,
+      "raza": "Persa",
+      "anotaciones": "Le gusta dormir en lugares altos",
+      "temperamento": "Tranquilo",
+      "userId": 2
+    }
+  ],
+  "stays": [
+    {
+      "id": 1,
+      "ingreso": "2025-01-15",
+      "salida": "2025-01-20",
+      "petId": 1,
+      "serviciosAdicionales": [
+        "Paseo diario",
+        "Cepillado"
+      ],
+      "valorDia": 40000,
+      "completada": true
+    },
+    {
+      "id": 2,
+      "ingreso": "2025-01-25",
+      "salida": "2025-01-30",
+      "petId": 2,
+      "serviciosAdicionales": [
+        "Alimentación especial"
+      ],
+      "valorDia": 35000,
+      "completada": false
+    },
+    {
+      "petId": 1,
+      "ingreso": "2026-05-05",
+      "salida": "2026-06-05",
+      "valorDia": 12222,
+      "serviciosAdicionales": [
+        "Paseo diario"
+      ],
+      "completada": false,
+      "id": 3
+    }
+  ]
+}

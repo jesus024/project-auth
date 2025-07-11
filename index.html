@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetCare Center - Centro de Cuidado de Mascotas</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+</head>
+<body>
+  <!-- Landing Page -->
+  <section id="landing" class="view active">
+    <header class="landing-header">
+      <h1>🐾 PetCare Center</h1>
+      <nav>
+        <button id="go-to-login">Iniciar sesión</button>
+        <button id="go-to-register">Registrarse</button>
+      </nav>
+    </header>
+
+    <main class="landing-main">
+      <section class="landing-text">
+        <h2>Tu mascota merece vacaciones también</h2>
+        <p>En <strong>PetCare Center</strong> cuidamos de tu peludo amigo como si fuera nuestro. Mientras tú te relajas,
+          nosotros nos encargamos de su felicidad, comodidad y bienestar.</p>
+        <div class="landing-cta">
+          <button id="cta-login">Ya tengo cuenta</button>
+          <button id="cta-register">Quiero registrarme</button>
+        </div>
+      </section>
+
+      <div class="landing-image">
+        <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg" alt="Perro feliz en cuidado" />
+      </div>
+    </main>
+
+    <footer class="landing-footer">
+      <p>&copy; 2025 PetCare Center. Todos los derechos reservados.</p>
+    </footer>
+  </section>
+
+  <!-- Login View -->
+  <section id="login" class="view">
+    <div class="login-container">
+      <h2>Iniciar sesión</h2>
+      <form id="login-form">
+        <input type="text" id="login-username" placeholder="Email o identidad" required />
+        <input type="password" id="login-password" placeholder="Contraseña" required />
+        <button type="submit">Entrar</button>
+      </form>
+      <p class="login-switch">
+        ¿No tienes cuenta?
+        <a href="#" id="login-go-register">Regístrate aquí</a>
+      </p>
+      <p class="login-switch">
+        <a href="#" id="login-go-landing">Volver al inicio</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Register View -->
+  <section id="register" class="view">
+    <div class="register-container">
+      <h2>Crear cuenta</h2>
+      <form id="register-form">
+        <input type="text" id="register-nombre" placeholder="Nombre completo" required />
+        <input type="text" id="register-identidad" placeholder="Número de identidad" required />
+        <input type="tel" id="register-telefono" placeholder="Número de teléfono" required />
+        <input type="text" id="register-direccion" placeholder="Dirección" required />
+        <input type="email" id="register-email" placeholder="Correo electrónico" required />
+        <input type="password" id="register-contrasena" placeholder="Contraseña" required />
+        <button type="submit">Registrarse</button>
+      </form>
+      <p class="register-switch">
+        ¿Ya tienes cuenta?
+        <a href="#" id="register-go-login">Inicia sesión</a>
+      </p>
+      <p class="register-switch">
+        <a href="#" id="register-go-landing">Volver al inicio</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Dashboard View -->
+  <section id="dashboard" class="view">
+    <header class="dashboard-header">
+      <h2 id="dashboard-title">Dashboard</h2>
+      <div class="dashboard-actions">
+        <button id="add-pet-btn" class="hidden">Agregar Mascota</button>
+        <button id="add-stay-btn" class="hidden">Crear Estancia</button>
+        <button id="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <main class="dashboard-main">
+      <!-- Customer Dashboard -->
+      <div id="customer-dashboard" class="hidden">
+        <div class="pets-section">
+          <h3>Mis Mascotas</h3>
+          <div id="customer-pets" class="pets-container">
+            <!-- Pets will be loaded here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Worker Dashboard -->
+      <div id="worker-dashboard" class="hidden">
+        <div class="dashboard-tabs">
+          <button class="tab-btn active" data-tab="pets">Todas las Mascotas</button>
+          <button class="tab-btn" data-tab="users">Usuarios</button>
+          <button class="tab-btn" data-tab="stays">Estancias</button>
+        </div>
+
+        <div id="pets-tab" class="tab-content active">
+          <div id="all-pets" class="pets-container">
+            <!-- All pets will be loaded here -->
+          </div>
+        </div>
+
+        <div id="users-tab" class="tab-content">
+          <div id="all-users" class="users-container">
+            <!-- All users will be loaded here -->
+          </div>
+        </div>
+
+        <div id="stays-tab" class="tab-content">
+          <div id="all-stays" class="stays-container">
+            <!-- All stays will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- 404 View -->
+  <section id="not-found" class="view">
+    <div class="not-found-container">
+      <h1>404</h1>
+      <h2>Página no encontrada</h2>
+      <p>La página que buscas no existe.</p>
+      <button id="go-home">Volver al inicio</button>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <!-- Pet Form Modal -->
+  <div id="pet-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="pet-modal-title">Agregar Mascota</h3>
+      <form id="pet-form">
+        <input type="text" id="pet-nombre" placeholder="Nombre de la mascota" required />
+        <input type="number" id="pet-peso" placeholder="Peso (kg)" step="0.1" required />
+        <input type="number" id="pet-edad" placeholder="Edad (años)" min="0" required />
+        <input type="text" id="pet-raza" placeholder="Raza" required />
+        <input type="text" id="pet-temperamento" placeholder="Temperamento" required />
+        <textarea id="pet-anotaciones" placeholder="Anotaciones (opcional)"></textarea>
+        <div class="form-buttons">
+          <button type="submit">Guardar</button>
+          <button type="button" id="cancel-pet">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Stay Form Modal -->
+  <div id="stay-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="stay-modal-title">Crear Estancia</h3>
+      <form id="stay-form">
+        <select id="stay-pet" required>
+          <option value="">Seleccionar mascota</option>
+        </select>
+        <input type="date" id="stay-ingreso" required />
+        <input type="date" id="stay-salida" required />
+        <input type="number" id="stay-valor-dia" placeholder="Valor por día" required />
+        <div class="services-section">
+          <label>Servicios adicionales:</label>
+          <div class="services-checkboxes">
+            <label><input type="checkbox" value="Paseo diario"> Paseo diario</label>
+            <label><input type="checkbox" value="Cepillado"> Cepillado</label>
+            <label><input type="checkbox" value="Alimentación especial"> Alimentación especial</label>
+            <label><input type="checkbox" value="Baño"> Baño</label>
+            <label><input type="checkbox" value="Entrenamiento"> Entrenamiento</label>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="submit">Crear Estancia</button>
+          <button type="button" id="cancel-stay">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>
