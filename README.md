@@ -2,7 +2,7 @@
 
 Una Single Page Application (SPA) para un centro vacacional de cuidado de mascotas, desarrollada con HTML5, CSS3 y JavaScript Vanilla.
 
-## 🚀 Características
+##  Características
 
 - **Autenticación de usuarios** con roles (worker/customer)
 - **Gestión de mascotas** - registro, edición y eliminación
@@ -12,12 +12,12 @@ Una Single Page Application (SPA) para un centro vacacional de cuidado de mascot
 - **Navegación fluida** sin recargas de página
 - **API REST** simulada con json-server
 
-## 📋 Requisitos Previos
+##  Requisitos Previos
 
 - Node.js (versión 14 o superior)
 - npm o yarn
 
-## 🛠️ Instalación
+## 🛠 Instalación
 
 1. **Clona o descarga el proyecto**
    ```bash
@@ -40,7 +40,7 @@ Una Single Page Application (SPA) para un centro vacacional de cuidado de mascot
    npm run server
    ```
 
-## 🎯 Cómo usar la aplicación
+##  Cómo usar la aplicación
 
 ### Acceso inicial
 - Abre tu navegador y ve a `http://localhost:5173`
@@ -58,20 +58,20 @@ Una Single Page Application (SPA) para un centro vacacional de cuidado de mascot
 
 ### Funcionalidades por rol
 
-#### 👨‍💼 Trabajador (Worker)
+#### Trabajador (Worker)
 - Ver todas las mascotas del sistema
 - Ver todos los usuarios registrados
 - Crear estancias para mascotas
 - Editar y completar estancias
 - Calcular valores totales de estancias
 
-#### 👤 Cliente (Customer)
+#### Cliente (Customer)
 - Ver solo sus mascotas
 - Registrar nuevas mascotas
 - Editar o eliminar mascotas (solo si no tienen estancias)
 - Cerrar sesión
 
-## 📊 Estructura de la Base de Datos
+##  Estructura de la Base de Datos
 
 ### Colecciones en `database.json`
 
@@ -128,7 +128,7 @@ Una Single Page Application (SPA) para un centro vacacional de cuidado de mascot
 }
 ```
 
-## 🔧 API Endpoints
+##  API Endpoints
 
 ### Base URL: `http://localhost:3001`
 
@@ -161,7 +161,7 @@ Una Single Page Application (SPA) para un centro vacacional de cuidado de mascot
 - `PATCH /stays/:id` - Actualizar estancia
 - `DELETE /stays/:id` - Eliminar estancia
 
-## 💰 Cálculo de Estancias
+## Cálculo de Estancias
 
 El sistema calcula automáticamente el valor total de cada estancia:
 
@@ -175,7 +175,7 @@ El sistema calcula automáticamente el valor total de cada estancia:
 - Días: 6 (incluyendo 10 y 15)
 - **Total: $240,000**
 
-## 🎨 Características de la UI
+##  Características de la UI
 
 - **Diseño responsivo** que se adapta a diferentes tamaños de pantalla
 - **Animaciones suaves** para transiciones entre vistas
@@ -185,7 +185,7 @@ El sistema calcula automáticamente el valor total de cada estancia:
 - **Badges** para mostrar roles y estados
 - **Gradientes** y efectos visuales modernos
 
-## 🔒 Seguridad y Validaciones
+##  Seguridad y Validaciones
 
 - **Autenticación** mediante localStorage
 - **Validación de roles** para acceso a funcionalidades
@@ -193,7 +193,7 @@ El sistema calcula automáticamente el valor total de cada estancia:
 - **Validación de formularios** en el frontend
 - **Manejo de errores** en llamadas a la API
 
-## 🚀 Scripts Disponibles
+##  Scripts Disponibles
 
 ```bash
 npm run dev          # Inicia el servidor de desarrollo (Vite)
@@ -202,7 +202,7 @@ npm run preview      # Previsualiza la build de producción
 npm run server       # Inicia json-server en puerto 3001
 ```
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 project-auth/
@@ -217,7 +217,7 @@ project-auth/
         └── main.js        # Lógica principal JavaScript
 ```
 
-## 🐛 Solución de Problemas
+##  Solución de Problemas
 
 ### El servidor no inicia
 - Verifica que el puerto 3001 esté disponible
@@ -231,7 +231,7 @@ project-auth/
 - Limpia el localStorage del navegador
 - Verifica que los usuarios de prueba existan en `database.json`
 
-## 📝 Notas de Desarrollo
+##  Notas de Desarrollo
 
 - La aplicación utiliza **JavaScript Vanilla** sin frameworks
 - **json-server** simula una API REST completa
@@ -239,7 +239,7 @@ project-auth/
 - **Fetch API** para las comunicaciones HTTP
 - **CSS Grid y Flexbox** para el diseño responsivo
 
-## 🤝 Contribución
+##  Contribución
 
 1. Fork el proyecto
 2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -247,7 +247,7 @@ project-auth/
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📄 Licencia
+##  Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
