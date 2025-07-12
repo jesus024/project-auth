@@ -15,7 +15,7 @@
       "nombre": "María",
       "identidad": "12345678",
       "telefono": "3001234567",
-      "direccion": "Calle 123 #45-67, Bogotá",
+      "direccion": "Calle",
       "email": "maria@gmail.com",
       "contrasena": "123456",
       "rolId": 1
@@ -25,7 +25,7 @@
       "nombre": "Carlos",
       "identidad": "87654321",
       "telefono": "3109876543",
-      "direccion": "Carrera 78 #12-34, Medellín",
+      "direccion": "Carrera",
       "email": "carlos@gmail.com",
       "contrasena": "123456",
       "rolId": 2
@@ -35,7 +35,7 @@
       "nombre": "Ana",
       "identidad": "11223344",
       "telefono": "3155555555",
-      "direccion": "Avenida 5 #23-45, Cali",
+      "direccion": "Avenida",
       "email": "ana@gmail.com",
       "contrasena": "123456",
       "rolId": 2
