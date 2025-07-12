@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PetCare Center - Centro de Cuidado de Mascotas</title>
-  <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/styles.css" />
+  <title>PetCare Center - Pet Care Center</title>
 </head>
+
 <body>
   <!-- Landing Page -->
-  <section id="landing" class="view active">
+  <section id="landing">
     <header class="landing-header">
       <h1>🐾 PetCare Center</h1>
       <nav>
-        <button id="go-to-login">Log in</button>
-        <button id="go-to-register">Sign up</button>
+        <button id="go-to-login">Login</button>
+        <button id="go-to-register">Register</button>
       </nav>
     </header>
 
     <main class="landing-main">
       <section class="landing-text">
         <h2>Your pet deserves a vacation too</h2>
-        <p>At <strong>PetCare Center</strong> we take care of your furry friend as if they were our own. While you relax, we take care of their happiness, comfort, and well-being.</p>
+        <p>At <strong>PetCare Center</strong> we take care of your furry friend as if it were our own. While you relax,
+          we take care of their happiness, comfort and well-being.</p>
         <div class="landing-cta">
           <button id="cta-login">I already have an account</button>
-          <button id="cta-register">I want to sign up</button>
+          <button id="cta-register">I want to register</button>
         </div>
       </section>
 
@@ -38,157 +41,180 @@
   </section>
 
   <!-- Login View -->
-  <section id="login" class="view">
+  <section id="login" class="hidden">
     <div class="login-container">
-      <h2>Log in</h2>
+      <h2>Login</h2>
       <form id="login-form">
-        <input type="text" id="login-username" placeholder="Email or ID" required />
-        <input type="password" id="login-password" placeholder="Password" required />
-        <button type="submit">Log in</button>
+        <input type="text" id="login-username" placeholder="Email or Identity" autocomplete="username" required />
+        <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required />
+        <button type="submit">Enter</button>
       </form>
       <p class="login-switch">
         Don't have an account?
-        <a href="#" id="login-go-register">Sign up here</a>
+        <a href="#" id="login-go-register">Register here</a>
       </p>
-      <p class="login-switch">
-        <a href="#" id="login-go-landing">Back to home</a>
-      </p>
+      <button id="login-go-home" class="btn-back">Back to home</button>
     </div>
   </section>
 
   <!-- Register View -->
-  <section id="register" class="view">
+  <section id="register" class="hidden">
     <div class="register-container">
-      <h2>Create account</h2>
+      <h2>Create Account</h2>
       <form id="register-form">
         <input type="text" id="register-nombre" placeholder="Full name" required />
-        <input type="text" id="register-identidad" placeholder="ID number" required />
+        <input type="text" id="register-identidad" placeholder="Identity number" required />
         <input type="tel" id="register-telefono" placeholder="Phone number" required />
         <input type="text" id="register-direccion" placeholder="Address" required />
         <input type="email" id="register-email" placeholder="Email" required />
-        <input type="password" id="register-contrasena" placeholder="Password" required />
-        <button type="submit">Sign up</button>
+        <input type="password" id="register-password" placeholder="Password" required />
+        <button type="submit">Register</button>
       </form>
       <p class="register-switch">
         Already have an account?
-        <a href="#" id="register-go-login">Log in</a>
+        <a href="#" id="register-go-login">Login</a>
       </p>
-      <p class="register-switch">
-        <a href="#" id="register-go-landing">Back to home</a>
-      </p>
+      <button id="register-go-home" class="btn-back">Back to home</button>
     </div>
   </section>
 
   <!-- Dashboard View -->
-  <section id="dashboard" class="view">
-    <header class="dashboard-header">
+  <section id="dashboard" class="hidden">
+    <div class="dashboard-header">
       <h2 id="dashboard-title">Dashboard</h2>
       <div class="dashboard-actions">
-        <button id="add-pet-btn" class="hidden">Add Pet</button>
-        <button id="add-stay-btn" class="hidden">Create Stay</button>
-        <button id="logout-btn">Log out</button>
+        <button id="logout-btn">Logout</button>
       </div>
-    </header>
+    </div>
 
-    <main class="dashboard-main">
-      <!-- Customer Dashboard -->
-      <div id="customer-dashboard" class="hidden">
-        <div class="pets-section">
+    <!-- Customer Dashboard -->
+    <div id="customer-dashboard" class="hidden">
+      <div class="dashboard-section">
+        <div class="section-header">
           <h3>My Pets</h3>
-          <div id="customer-pets" class="pets-container">
-            <!-- Pets will be loaded here -->
-          </div>
+          <button id="add-pet-btn" class="btn-primary">Add Pet</button>
+        </div>
+        <div id="pets-container" class="cards-container">
+          <!-- Pets will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Worker Dashboard -->
+    <div id="worker-dashboard" class="hidden">
+      <div class="dashboard-tabs">
+        <button class="tab-btn active" data-tab="pets">Pets</button>
+        <button class="tab-btn" data-tab="users">Users</button>
+        <button class="tab-btn" data-tab="stays">Stays</button>
+      </div>
+
+      <!-- Pets Tab -->
+      <div id="pets-tab" class="tab-content active">
+        <div class="section-header">
+          <h3>All Pets</h3>
+        </div>
+        <div id="all-pets-container" class="cards-container">
+          <!-- All pets will be loaded here -->
         </div>
       </div>
 
-      <!-- Worker Dashboard -->
-      <div id="worker-dashboard" class="hidden">
-        <div class="dashboard-tabs">
-          <button class="tab-btn active" data-tab="pets">All Pets</button>
-          <button class="tab-btn" data-tab="users">Users</button>
-          <button class="tab-btn" data-tab="stays">Stays</button>
+      <!-- Users Tab -->
+      <div id="users-tab" class="tab-content">
+        <div class="section-header">
+          <h3>All Users</h3>
         </div>
-
-        <div id="pets-tab" class="tab-content active">
-          <div id="all-pets" class="pets-container">
-            <!-- All pets will be loaded here -->
-          </div>
-        </div>
-
-        <div id="users-tab" class="tab-content">
-          <div id="all-users" class="users-container">
-            <!-- All users will be loaded here -->
-          </div>
-        </div>
-
-        <div id="stays-tab" class="tab-content">
-          <div id="all-stays" class="stays-container">
-            <!-- All stays will be loaded here -->
-          </div>
+        <div id="users-container" class="cards-container">
+          <!-- Users will be loaded here -->
         </div>
       </div>
-    </main>
-  </section>
 
-  <!-- 404 View -->
-  <section id="not-found" class="view">
-    <div class="not-found-container">
-      <h1>404</h1>
-      <h2>Page not found</h2>
-      <p>The page you are looking for does not exist.</p>
-      <button id="go-home">Back to home</button>
-    </div>
-  </section>
-
-  <!-- Modals -->
-  <!-- Pet Form Modal -->
-  <div id="pet-modal" class="modal hidden">
-    <div class="modal-content">
-      <h3 id="pet-modal-title">Add Pet</h3>
-      <form id="pet-form">
-        <input type="text" id="pet-nombre" placeholder="Pet name" required />
-        <input type="number" id="pet-peso" placeholder="Weight (kg)" step="0.1" required />
-        <input type="number" id="pet-edad" placeholder="Age (years)" min="0" required />
-        <input type="text" id="pet-raza" placeholder="Breed" required />
-        <input type="text" id="pet-temperamento" placeholder="Temperament" required />
-        <textarea id="pet-anotaciones" placeholder="Notes (optional)"></textarea>
-        <div class="form-buttons">
-          <button type="submit">Save</button>
-          <button type="button" id="cancel-pet">Cancel</button>
+      <!-- Stays Tab -->
+      <div id="stays-tab" class="tab-content">
+        <div class="section-header">
+          <h3>Stay Management</h3>
+          <button id="add-stay-btn" class="btn-primary">New Stay</button>
         </div>
-      </form>
+        <div id="stays-container" class="cards-container">
+          <!-- Stays will be loaded here -->
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- Stay Form Modal -->
-  <div id="stay-modal" class="modal hidden">
-    <div class="modal-content">
-      <h3 id="stay-modal-title">Create Stay</h3>
-      <form id="stay-form">
-        <select id="stay-pet" required>
-          <option value="">Select a pet</option>
-        </select>
-        <input type="date" id="stay-ingreso" required />
-        <input type="date" id="stay-salida" required />
-        <input type="number" id="stay-valor-dia" placeholder="Value per day" required />
-        <div class="services-section">
-          <label>Additional services:</label>
-          <div class="services-checkboxes">
-            <label><input type="checkbox" value="Paseo diario"> Daily walk</label>
-            <label><input type="checkbox" value="Cepillado"> Brushing</label>
-            <label><input type="checkbox" value="Alimentación especial"> Special feeding</label>
-            <label><input type="checkbox" value="Baño"> Bath</label>
-            <label><input type="checkbox" value="Entrenamiento"> Training</label>
+    <!-- Pet Form Modal -->
+    <div id="pet-form-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="pet-form-title">Add New Pet</h3>
+        <form id="pet-form">
+          <input type="text" id="pet-nombre" placeholder="Pet name" required />
+          <input type="number" id="pet-peso" placeholder="Weight (kg)" step="0.1" required />
+          <input type="number" id="pet-edad" placeholder="Age (years)" min="0" required />
+          <input type="text" id="pet-raza" placeholder="Breed" required />
+          <textarea id="pet-anotaciones" placeholder="Notes (optional)"></textarea>
+          <select id="pet-temperamento" required>
+            <option value="">Select temperament</option>
+            <option value="Friendly">Friendly</option>
+            <option value="Calm">Calm</option>
+            <option value="Energetic">Energetic</option>
+            <option value="Nervous">Nervous</option>
+            <option value="Aggressive">Aggressive</option>
+          </select>
+          <div class="form-buttons">
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-pet-form">Cancel</button>
           </div>
-        </div>
-        <div class="form-buttons">
-          <button type="submit">Create Stay</button>
-          <button type="button" id="cancel-stay">Cancel</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
+
+    <!-- Stay Form Modal -->
+    <div id="stay-form-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="stay-form-title">New Stay</h3>
+        <form id="stay-form">
+          <select id="stay-pet-id" required>
+            <option value="">Select pet</option>
+          </select>
+          <input type="date" id="stay-ingreso" required />
+          <input type="date" id="stay-salida" required />
+          <input type="number" id="stay-valor-dia" placeholder="Daily rate" required />
+          <div class="services-section">
+            <h4>Additional Services</h4>
+            <div class="services-checkboxes">
+              <label><input type="checkbox" value="Daily walk"> Daily walk</label>
+              <label><input type="checkbox" value="Brushing"> Brushing</label>
+              <label><input type="checkbox" value="Bath"> Bath</label>
+              <label><input type="checkbox" value="Training"> Training</label>
+              <label><input type="checkbox" value="Special care"> Special care</label>
+            </div>
+          </div>
+          <div class="form-buttons">
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-stay-form">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 404 Error View -->
+  <section id="error-404" class="hidden">
+    <div class="error-container">
+      <div class="error-content">
+        <h1>404</h1>
+        <h2>Oops! Page not found</h2>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        <div class="error-actions">
+          <button id="go-home" class="btn-primary">Go to Home</button>
+          <button id="go-back" class="btn-secondary">Go Back</button>
+        </div>
+      </div>
+      <div class="error-image">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/12/42/dog-2061182_1280.jpg" alt="Confused dog" />
+      </div>
+    </div>
+  </section>
 
   <script type="module" src="./src/js/main.js"></script>
 </body>
+
 </html>

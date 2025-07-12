@@ -12,31 +12,31 @@
   "users": [
     {
       "id": 1,
-      "nombre": "Ana García",
+      "nombre": "María",
       "identidad": "12345678",
       "telefono": "3001234567",
       "direccion": "Calle 123 #45-67, Bogotá",
-      "email": "ana@mail.com",
+      "email": "maria@gmail.com",
       "contrasena": "123456",
       "rolId": 1
     },
     {
       "id": 2,
-      "nombre": "Carlos López",
+      "nombre": "Carlos",
       "identidad": "87654321",
       "telefono": "3109876543",
       "direccion": "Carrera 78 #12-34, Medellín",
-      "email": "carlos@mail.com",
+      "email": "carlos@gmail.com",
       "contrasena": "123456",
       "rolId": 2
     },
     {
       "id": 3,
-      "nombre": "María Rodríguez",
+      "nombre": "Ana",
       "identidad": "11223344",
       "telefono": "3155555555",
       "direccion": "Avenida 5 #23-45, Cali",
-      "email": "maria@mail.com",
+      "email": "ana@gmail.com",
       "contrasena": "123456",
       "rolId": 2
     }
@@ -44,23 +44,33 @@
   "pets": [
     {
       "id": 1,
-      "nombre": "Luna",
-      "peso": 15.5,
+      "nombre": "Rocky",
+      "peso": 25.5,
       "edad": 3,
       "raza": "Golden Retriever",
-      "anotaciones": "Muy juguetona y sociable",
+      "anotaciones": "Muy juguetón y sociable",
       "temperamento": "Amigable",
       "userId": 2
     },
     {
       "id": 2,
-      "nombre": "Max",
-      "peso": 8.2,
+      "nombre": "Luna",
+      "peso": 4.2,
       "edad": 2,
       "raza": "Persa",
       "anotaciones": "Le gusta dormir en lugares altos",
-      "temperamento": "Tranquilo",
-      "userId": 1
+      "temperamento": "Tranquila",
+      "userId": 2
+    },
+    {
+      "nombre": "kira",
+      "peso": 2.8,
+      "edad": 1,
+      "raza": "mestiza",
+      "anotaciones": "Le gusta pasear",
+      "temperamento": "Energetic",
+      "userId": 3,
+      "id": 3
     }
   ],
   "stays": [
@@ -82,20 +92,21 @@
       "salida": "2025-01-30",
       "petId": 2,
       "serviciosAdicionales": [
-        "Alimentación especial"
+        "Cepillado"
       ],
       "valorDia": 35000,
-      "completada": false
+      "completada": true
     },
     {
-      "petId": 1,
-      "ingreso": "2026-05-05",
-      "salida": "2026-06-05",
-      "valorDia": 12222,
+      "petId": 3,
+      "ingreso": "2026-09-21",
+      "salida": "2026-09-25",
+      "valorDia": 4,
       "serviciosAdicionales": [
-        "Paseo diario"
+        "Daily walk",
+        "Bath"
       ],
-      "completada": false,
+      "completada": true,
       "id": 3
     }
   ]
